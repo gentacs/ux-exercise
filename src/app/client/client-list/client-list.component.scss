@@ -1,0 +1,14 @@
+:host {
+    margin: 1em 2em;
+}
+
+td {
+    a {
+        color: #07f;
+        cursor: pointer;
+
+        &:hover {
+            color: #0af;
+        }
+    }
+}

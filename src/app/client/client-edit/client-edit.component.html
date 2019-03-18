@@ -1,0 +1,34 @@
+<div class="container" *ngIf="client">
+    <form [formGroup]="formClient" (ngSubmit)="save()">
+        <div class="form-group" *ngIf="!isNewClient">
+            <label>Id</label>
+            <div>{{client.id}}</div>
+        </div>
+        <div class="form-group" >
+            <label>Name</label>
+                
+            <input type="text" class="form-control" 
+                formControlName="name" />
+            <p class="alert alert-danger"
+                *ngIf="formClient.controls.name.errors && formClient.controls.name.dirty">Name is required!</p>
+        </div>
+        <div class="form-group">
+            <label>Birthdate</label>            
+            <input type="text" 
+                ngbDatepicker 
+                #d="ngbDatepicker"
+                [maxDate]="maxdate"
+                [minDate]="mindate"
+                [startDate]="startDate"
+                (focus)="d.open()" 
+                class="form-control" 
+                formControlName="birthdate" />
+            <p class="alert alert-danger"
+                *ngIf="formClient.controls.birthdate.errors && formClient.controls.birthdate.dirty">Birthdate is required!</p>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-primary" [disabled]="!formClient.valid || formClient.pristine">Save</button>
+            <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+        </div> 
+    </form>
+</div>
